@@ -1,0 +1,9 @@
+.carousel-container {
+  overflow: hidden;
+  height: 395px;
+}
+.popular-slide {
+  margin: 50px 80px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+}

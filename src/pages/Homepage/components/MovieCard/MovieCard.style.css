@@ -1,0 +1,79 @@
+.movie-card {
+  width: 220px;
+  height: 330px;
+  background-size: cover;
+  cursor: pointer;
+  transition: 0.5s;
+}
+.movie-card:hover {
+  transform: scale(1.2) translateZ(20px);
+  z-index: 2;
+  border-radius: 10px;
+}
+
+.overlay {
+  width: 100%;
+  height: 100%;
+  background: rgba(43, 41, 41, 0.9);
+  opacity: 0;
+  transition: all 1s;
+  color: white;
+  font-weight: bold;
+  overflow-wrap: break-word;
+  border-radius: 10px;
+}
+.overlay:hover {
+  opacity: 1;
+}
+
+.p-10 {
+  padding: 10px;
+}
+.mr-5 {
+  margin-right: 5px;
+}
+.mr-10 {
+  margin-right: 10px;
+}
+
+.eighteen {
+  color: #dc143c;
+  font-family: fantasy !important;
+}
+
+.movie-card .card-bottom-1 {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  width: 100%;
+  display: flex;
+  padding: 0 10px;
+}
+.movie-card .card-bottom-2 {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  width: 100%;
+  padding: 0 10px;
+  font-size: 20px;
+}
+
+.movie-title {
+  position: relative;
+}
+.movie-title::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 0.5px;
+  background-color: white;
+  transition: width 0.3s;
+}
+.movie-title:hover::after {
+  width: 30%;
+}
+.smaller-text {
+  font-size: 30px;
+}

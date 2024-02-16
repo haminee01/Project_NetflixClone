@@ -1,0 +1,42 @@
+.banner {
+  height: 550px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.banner::before {
+  content: "";
+  background: linear-gradient(to top, black, transparent);
+  position: absolute;
+  left: 0;
+  height: 550px;
+  width: 100%;
+  opacity: 0.9;
+}
+.banner-text-area {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  padding: 50px;
+}
+.banner-text-area > * {
+  z-index: 2;
+}
+.banner-text-h1 {
+  margin-bottom: 30px;
+  font-family: "Playfair Display", serif;
+  font-weight: bold;
+  font-size: 50px;
+}
+.banner-text-h5 {
+  font-family: "Playfair Display", serif;
+  font-weight: light;
+}
+.spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 550px;
+}
