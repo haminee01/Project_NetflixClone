@@ -40,3 +40,23 @@
   align-items: center;
   height: 550px;
 }
+
+@media screen and (max-width: 48rem) {
+  .banner {
+    height: 200px;
+  }
+  .banner::before {
+    height: 200px;
+  }
+  .banner-text-area {
+    width: 100%;
+  }
+  .banner-text-h1 {
+    margin-bottom: 8px;
+    font-size: 25px;
+    margin-top: 60px;
+  }
+  .banner-text-h5 {
+    font-size: 10px;
+  }
+}

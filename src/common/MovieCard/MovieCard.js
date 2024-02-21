@@ -4,6 +4,11 @@ import "./MovieCard.style.css";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 
 const MovieCard = ({ movie }) => {
+  const isMobile = window.innerWidth <= 768;
+  const backgroundImageUrl = isMobile
+    ? "https://media.themoviedb.org/t/p/w533_and_h300_bestv2"
+    : "https://media.themoviedb.org/t/p/w300_and_h450_bestv2";
+
   const { data: genreData } = useMovieGenreQuery();
 
   const showGenre = (genreIdList) => {
@@ -19,9 +24,7 @@ const MovieCard = ({ movie }) => {
     <div
       style={{
         backgroundImage:
-          "url(" +
-          `https://media.themoviedb.org/t/p/w300_and_h450_bestv2${movie.poster_path}` +
-          ")",
+          "url(" + `${backgroundImageUrl}${movie.poster_path}` + ")",
       }}
       className="movie-card"
     >
@@ -35,7 +38,7 @@ const MovieCard = ({ movie }) => {
             {movie.title}
           </h1>
           {showGenre(movie.genre_ids).map((id) => (
-            <Badge bg="danger" className="mr-10">
+            <Badge bg="danger" className="mr-10 genre-button">
               {id}
             </Badge>
           ))}

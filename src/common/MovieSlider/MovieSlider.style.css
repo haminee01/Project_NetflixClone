@@ -1,9 +1,24 @@
 .carousel-container {
   overflow: hidden;
-  height: 395px;
+  height: 430px;
+  padding: 20px;
 }
 .popular-slide {
   margin: 50px 80px;
   font-family: "Playfair Display", serif;
   font-weight: bold;
+}
+
+@media screen and (max-width: 48rem) {
+  .popular-slide {
+    margin: 20px 30px;
+  }
+  .carousel-container {
+    height: 200px;
+    margin-left: 2px;
+  }
+  .font-size {
+    font-weight: bold;
+    font-size: 20px;
+  }
 }

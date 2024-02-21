@@ -1,6 +1,6 @@
 .movie-card {
-  width: 220px;
-  height: 330px;
+  width: 240px;
+  height: 360px;
   background-size: cover;
   cursor: pointer;
   transition: 0.5s;
@@ -76,4 +76,36 @@
 }
 .smaller-text {
   font-size: 32px;
+}
+
+@media screen and (max-width: 48rem) {
+  .p-10 {
+    padding: 10px;
+  }
+  .mr-5 {
+    margin-right: 3px;
+  }
+  .mr-10 {
+    margin-right: 5px;
+    font-size: 15px;
+  }
+  .movie-card {
+    width: 280px;
+    height: 170px;
+  }
+  .movie-card:hover {
+    transform: scale(1.15) translateZ(20px);
+  }
+  .smaller-text {
+    font-size: 22px;
+  }
+  .eighteen {
+    font-size: 13px;
+  }
+  .movie-card .card-bottom-1 {
+    bottom: 28px;
+  }
+  .movie-card .card-bottom-2 {
+    bottom: 5px;
+  }
 }

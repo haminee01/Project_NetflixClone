@@ -3,10 +3,6 @@ import { usePopularMoviesQuery } from "../../../../hooks/usePopularMovies";
 import Alert from "react-bootstrap/Alert";
 import "./Banner.style.css";
 import ClipLoader from "react-spinners/ClipLoader";
-<style>
-  @import
-  url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap')
-</style>;
 
 const Banner = () => {
   const { data, isLoading, isError, error } = usePopularMoviesQuery();
