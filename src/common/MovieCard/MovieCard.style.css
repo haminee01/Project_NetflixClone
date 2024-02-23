@@ -4,6 +4,7 @@
   background-size: cover;
   cursor: pointer;
   transition: 0.5s;
+  margin-bottom: 10px;
 }
 .movie-card:hover {
   transform: scale(1.2) translateZ(20px);
