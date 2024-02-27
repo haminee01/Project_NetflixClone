@@ -45,7 +45,7 @@ const MovieCard = ({ movie }) => {
             {movie.title}
           </h1>
           {showGenre(movie.genre_ids).map((id) => (
-            <Badge bg="danger" className="mr-10 genre-button">
+            <Badge bg="danger" className="mr-10">
               {id}
             </Badge>
           ))}

@@ -5,12 +5,12 @@
 .pagination .page-link {
   color: gray;
   background-color: black;
-  border-color: rgb(255, 65, 65);
+  border-color: #dc143c;
 }
 .pagination .active > .page-link {
   color: white;
-  background-color: rgb(255, 65, 65);
-  border-color: rgb(255, 65, 65);
+  background-color: #dc143c;
+  border-color: #dc143c;
 }
 .pagination .page-link:hover {
   color: white;
@@ -22,5 +22,8 @@
   .card-area {
     margin-left: 45px;
     margin-bottom: 5px;
+  }
+  .pagination {
+    margin-left: 10px;
   }
 }
