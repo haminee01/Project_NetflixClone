@@ -7,6 +7,7 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Alert from "react-bootstrap/Alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import MovieReviews from "../Homepage/components/Review/MovieReviews";
 
 const MovieDetailPage = () => {
   const posterBaseUrl = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2";
@@ -114,7 +115,7 @@ const MovieDetailPage = () => {
               <button className="more-button">Watch Trailer</button>
             </Col>
           </Row>
-          <Row>review</Row>
+          <MovieReviews id={id} />
         </Container>
       </div>
     </>
