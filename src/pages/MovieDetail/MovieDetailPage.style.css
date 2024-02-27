@@ -1,0 +1,70 @@
+.moviedetail-background {
+  background-image: url("https://images.unsplash.com/photo-1458053688450-eef5d21d43b3?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  display: flex;
+  align-items: center;
+  height: 450px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  text-align: center;
+}
+.moviedetail-area {
+  display: flex;
+  justify-content: center;
+  padding-right: 40px;
+}
+.moviedetail-area h1 {
+  font-size: 60px;
+  margin-bottom: 30px;
+  padding-left: 30px;
+}
+
+.breadcrumb-menu li {
+  display: inline-block;
+  padding: 24px 42px;
+  background: #fff;
+  line-height: 1;
+  position: relative;
+}
+.breadcrumb-menu li a::after {
+  content: "";
+  width: 2px;
+  height: 17px;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background-color: #c4c5d5;
+}
+.breadcrumb-menu li a {
+  text-decoration: none;
+  color: #525470;
+  font-size: 14px;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  letter-spacing: 2px;
+  font-weight: 500;
+}
+.breadcrumb-menu li span {
+  color: #abadc5;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  transition: all 0.3s ease 0s;
+  letter-spacing: 2px;
+}
+
+@media screen and (max-width: 48rem) {
+  .moviedetail-background {
+    height: 300px;
+  }
+  .moviedetail-area {
+    padding-right: 30px;
+  }
+  .moviedetail-area h1 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .breadcrumb-menu li a::after {
+    height: 0px;
+  }
+}

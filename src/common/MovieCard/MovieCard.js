@@ -2,12 +2,18 @@ import React from "react";
 import { Badge } from "react-bootstrap";
 import "./MovieCard.style.css";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
+import { useNavigate } from "react-router-dom";
 
 const MovieCard = ({ movie }) => {
   const isMobile = window.innerWidth <= 768;
   const backgroundImageUrl = isMobile
     ? "https://media.themoviedb.org/t/p/w533_and_h300_bestv2"
     : "https://media.themoviedb.org/t/p/w300_and_h450_bestv2";
+
+  const navigate = useNavigate();
+  const goToMovieDetail = () => {
+    navigate(`/movies/${movie.id}`);
+  };
 
   const { data: genreData } = useMovieGenreQuery();
 
@@ -22,6 +28,7 @@ const MovieCard = ({ movie }) => {
 
   return (
     <div
+      onClick={goToMovieDetail}
       style={{
         backgroundImage:
           "url(" + `${backgroundImageUrl}${movie.poster_path}` + ")",

@@ -1,1 +1,26 @@
+.pagination {
+  padding-top: 40px;
+  justify-content: center;
+}
+.pagination .page-link {
+  color: gray;
+  background-color: black;
+  border-color: rgb(255, 65, 65);
+}
+.pagination .active > .page-link {
+  color: white;
+  background-color: rgb(255, 65, 65);
+  border-color: rgb(255, 65, 65);
+}
+.pagination .page-link:hover {
+  color: white;
+  background-color: gray;
+  border-color: gray;
+}
 
+@media screen and (max-width: 48rem) {
+  .card-area {
+    margin-left: 45px;
+    margin-bottom: 5px;
+  }
+}
