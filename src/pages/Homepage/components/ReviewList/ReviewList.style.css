@@ -1,0 +1,10 @@
+.reviews {
+  padding: 40px;
+  border: 4px solid #f9f9f9;
+  margin-top: 30px;
+}
+.reviews-line {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}

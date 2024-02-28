@@ -1,0 +1,11 @@
+.card-area {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+@media screen and (max-width: 48rem) {
+  .card-area {
+    margin-top: 20px;
+  }
+}

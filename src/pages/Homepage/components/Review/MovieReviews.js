@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import ClipLoader from "react-spinners/ClipLoader";
 import Alert from "react-bootstrap/Alert";
-import "./MovieReviews.style.css";
 import { useMovieReviewQuery } from "../../../../hooks/useMovieReviews";
 import { useRelatedMovieQuery } from "../../../../hooks/useRelatedMovies";
+import ReviewList from "../ReviewList/ReviewList";
+import "./MovieReview.style.css";
+import RelatedMovies from "../RelatedMovies/RelatedMovies";
 
 const MovieReviews = ({ id }) => {
   const {
@@ -29,11 +31,10 @@ const MovieReviews = ({ id }) => {
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
   }
-  console.log("RelateData", RelateData);
 
   return (
     <>
-      <div>
+      <div className="review-area">
         <button
           className={`review-tab ${activeTab === "reviews" ? "active" : ""}`}
           onClick={() => toggleTab("reviews")}
@@ -50,8 +51,8 @@ const MovieReviews = ({ id }) => {
         </button>
       </div>
       <div>
-        {activeTab === "reviews" && <div>reviews</div>}
-        {activeTab === "relatedMovies" && <div>relatedMovies</div>}
+        {activeTab === "reviews" && <ReviewList reviews={ReviewData.results} />}
+        {activeTab === "relatedMovies" && <RelatedMovies movies={RelateData} />}
       </div>
     </>
   );
