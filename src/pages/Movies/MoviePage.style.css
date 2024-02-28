@@ -18,6 +18,26 @@
   border-color: gray;
 }
 
+.dropdown-area {
+  display: block;
+}
+#dropdown-basic-button {
+  background-color: black;
+  border-color: white;
+  width: 350px;
+  height: 60px;
+  margin-top: 20px;
+  font-size: 20px;
+  font-family: "Montserrat", helvetica, arial, sans-serif;
+  border-radius: 10px;
+}
+.dropdown-menu {
+  width: 350px;
+}
+.dropdown-menu {
+  --bs-dropdown-link-active-bg: #dc143c;
+}
+
 @media screen and (max-width: 48rem) {
   .card-area {
     margin-left: 45px;
@@ -25,5 +45,19 @@
   }
   .pagination {
     margin-left: 10px;
+  }
+  .dropdown-area {
+    display: flex;
+    justify-content: center;
+  }
+  #dropdown-basic-button {
+    width: 130px;
+    height: 40px;
+    font-size: 15px;
+    margin-right: 10px;
+    margin-bottom: 20px;
+  }
+  .dropdown-menu {
+    width: 50px;
   }
 }

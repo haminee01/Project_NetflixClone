@@ -7,6 +7,8 @@ import { Col, Container, Row } from "react-bootstrap";
 import MovieCard from "../../common/MovieCard/MovieCard";
 import ReactPaginate from "react-paginate";
 import "./MoviePage.style.css";
+import Dropdown from "react-bootstrap/Dropdown";
+import DropdownButton from "react-bootstrap/DropdownButton";
 
 const MoviePage = () => {
   const [query, setQuery] = useSearchParams();
@@ -39,9 +41,36 @@ const MoviePage = () => {
   return (
     <Container>
       <Row>
-        <Col lg={4} xs={12} className="card-area">
-          {" "}
-          필터{" "}
+        <Col lg={4} xs={12} className="dropdown-area">
+          <div>
+            <DropdownButton id="dropdown-basic-button" title="Sort">
+              <Dropdown.Item>Popularity</Dropdown.Item>
+              <Dropdown.Item>Rating</Dropdown.Item>
+              <Dropdown.Item>Latest</Dropdown.Item>
+            </DropdownButton>
+          </div>
+          <div>
+            <DropdownButton id="dropdown-basic-button" title="Genre">
+              <Dropdown.Item>Action</Dropdown.Item>
+              <Dropdown.Item>Adventure</Dropdown.Item>
+              <Dropdown.Item>Animation</Dropdown.Item>
+              <Dropdown.Item>Comedy</Dropdown.Item>
+              <Dropdown.Item>Crime</Dropdown.Item>
+              <Dropdown.Item>Documentary</Dropdown.Item>
+              <Dropdown.Item>Drama</Dropdown.Item>
+              <Dropdown.Item>Family</Dropdown.Item>
+              <Dropdown.Item>Fantasy</Dropdown.Item>
+              <Dropdown.Item>History</Dropdown.Item>
+              <Dropdown.Item>Horror</Dropdown.Item>
+              <Dropdown.Item>Music</Dropdown.Item>
+              <Dropdown.Item>Mystery</Dropdown.Item>
+              <Dropdown.Item>Science Fiction</Dropdown.Item>
+              <Dropdown.Item>TV Movie</Dropdown.Item>
+              <Dropdown.Item>Thriller</Dropdown.Item>
+              <Dropdown.Item>War</Dropdown.Item>
+              <Dropdown.Item>Western</Dropdown.Item>
+            </DropdownButton>
+          </div>
         </Col>
         <Col lg={8} xs={12}>
           <Row>
