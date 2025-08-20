@@ -1,7 +1,7 @@
 import React from "react";
 import { useTopRatedMoviesQuery } from "../../../../hooks/useTopRatedMovies";
 import ClipLoader from "react-spinners/ClipLoader";
-import { Alert } from "bootstrap";
+import Alert from "react-bootstrap/Alert";
 import MovieSlider from "../../../../common/MovieSlider/MovieSlider";
 import { responsive } from "../../../../constants/responsive";
 
@@ -17,6 +17,9 @@ const TopRatedMovieSlide = () => {
   }
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
+  }
+  if (!data || !data.results) {
+    return null;
   }
 
   return (
