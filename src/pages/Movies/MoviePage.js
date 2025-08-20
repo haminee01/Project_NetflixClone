@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSearchMovieQuery } from "../../hooks/useSearchMovie";
+import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 import { useSearchParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import Alert from "react-bootstrap/Alert";
@@ -13,19 +14,33 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 const MoviePage = () => {
   const [query, setQuery] = useSearchParams();
   const [page, setPage] = useState(1);
+  const [sort, setSort] = useState("popularity.desc");
+  const [genre, setGenre] = useState(null);
   const keyword = query.get("q");
   const pageRange = window.innerWidth < 768 ? 2 : 7;
 
   const { data, isLoading, isError, error } = useSearchMovieQuery({
     keyword,
     page,
+    sort,
+    genre,
   });
+
+  const { data: genres } = useMovieGenreQuery();
 
   const handlePageClick = ({ selected }) => {
     setPage(selected + 1);
   };
 
-  console.log("ddd", data);
+  const handleSortChange = (sortOption) => {
+    setSort(sortOption);
+    setPage(1);
+  };
+
+  const handleGenreChange = (genreId) => {
+    setGenre(genreId);
+    setPage(1);
+  };
 
   if (isLoading) {
     return (
@@ -42,33 +57,37 @@ const MoviePage = () => {
     <Container>
       <Row>
         <Col lg={4} xs={12} className="dropdown-area">
+          {/* Sort 드롭다운 */}
           <div>
             <DropdownButton id="dropdown-basic-button" title="Sort">
-              <Dropdown.Item>Popularity</Dropdown.Item>
-              <Dropdown.Item>Rating</Dropdown.Item>
-              <Dropdown.Item>Latest</Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => handleSortChange("popularity.desc")}
+              >
+                Popularity
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => handleSortChange("vote_average.desc")}
+              >
+                Rating
+              </Dropdown.Item>
+              <Dropdown.Item
+                onClick={() => handleSortChange("release_date.desc")}
+              >
+                Latest
+              </Dropdown.Item>
             </DropdownButton>
           </div>
+          {/* Genre 드롭다운 */}
           <div>
             <DropdownButton id="dropdown-basic-button" title="Genre">
-              <Dropdown.Item>Action</Dropdown.Item>
-              <Dropdown.Item>Adventure</Dropdown.Item>
-              <Dropdown.Item>Animation</Dropdown.Item>
-              <Dropdown.Item>Comedy</Dropdown.Item>
-              <Dropdown.Item>Crime</Dropdown.Item>
-              <Dropdown.Item>Documentary</Dropdown.Item>
-              <Dropdown.Item>Drama</Dropdown.Item>
-              <Dropdown.Item>Family</Dropdown.Item>
-              <Dropdown.Item>Fantasy</Dropdown.Item>
-              <Dropdown.Item>History</Dropdown.Item>
-              <Dropdown.Item>Horror</Dropdown.Item>
-              <Dropdown.Item>Music</Dropdown.Item>
-              <Dropdown.Item>Mystery</Dropdown.Item>
-              <Dropdown.Item>Science Fiction</Dropdown.Item>
-              <Dropdown.Item>TV Movie</Dropdown.Item>
-              <Dropdown.Item>Thriller</Dropdown.Item>
-              <Dropdown.Item>War</Dropdown.Item>
-              <Dropdown.Item>Western</Dropdown.Item>
+              {genres?.map((g) => (
+                <Dropdown.Item
+                  key={g.id}
+                  onClick={() => handleGenreChange(g.id)}
+                >
+                  {g.name}
+                </Dropdown.Item>
+              ))}
             </DropdownButton>
           </div>
         </Col>
@@ -85,7 +104,7 @@ const MoviePage = () => {
             onPageChange={handlePageClick}
             pageRangeDisplayed={pageRange}
             marginPagesDisplayed={1}
-            pageCount={data?.total_pages} //전체페이지
+            pageCount={data?.total_pages}
             previousLabel="<"
             pageClassName="page-item"
             pageLinkClassName="page-link"
@@ -99,7 +118,7 @@ const MoviePage = () => {
             containerClassName="pagination"
             activeClassName="active"
             renderOnZeroPageCount={null}
-            forcePage={page - 1} //현재페이지
+            forcePage={page - 1}
           />
         </Col>
       </Row>
