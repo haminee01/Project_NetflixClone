@@ -24,7 +24,6 @@ const MovieDetailPage = () => {
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
   }
-  console.log("ddd", data);
 
   return (
     <>
