@@ -5,8 +5,7 @@ import axios, {
 } from "axios";
 
 // NOTE: 환경 변수에서 불러오는 방식으로 변환
-const API_TOKEN: string =
-  "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJmMTQzNGE0NWI2N2MzYjJkZDU3MjM1NWU2ZjBhYTU5OSIsIm5iZiI6MTcwNzgyNjkxMC45MzUwMDAyLCJzdWIiOiI2NWNiNWVkZTViZTAwZTAxN2NhZDFmYjkiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.WTW0KT1G6THWGnciAGOd_kN3IvEGgyf24PsudasONKI";
+const API_TOKEN: string = "토큰";
 
 const api = axios.create({
   baseURL: "https://api.themoviedb.org/3",
