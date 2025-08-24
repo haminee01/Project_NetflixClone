@@ -2,14 +2,11 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
 
-// 💡 개봉 예정 영화 API의 'dates' 객체에 대한 인터페이스입니다.
 interface IUpcomingDates {
   maximum: string;
   minimum: string;
 }
 
-// 💡 개별 영화 객체에 대한 인터페이스
-// UI에 필요한 'id', 'title', 'poster_path'만 포함합니다.
 interface IMovie {
   id: number;
   title: string;
@@ -17,7 +14,6 @@ interface IMovie {
   backdrop_path: string | null;
 }
 
-// 💡 개봉 예정 영화 API 응답 전체에 대한 인터페이스
 interface IUpcomingMoviesResponse {
   dates: IUpcomingDates;
   page: number;
@@ -27,7 +23,7 @@ interface IUpcomingMoviesResponse {
 }
 
 /**
- * 개봉 예정 영화 목록을 가져오는 비동기 함수입니다.
+ * 개봉 예정 영화 목록을 가져오는 비동기 함수
  * @returns 개봉 예정 영화 데이터를 포함하는 Promise<AxiosResponse>
  */
 const fetchUpcomingMovies = (): Promise<
@@ -37,7 +33,7 @@ const fetchUpcomingMovies = (): Promise<
 };
 
 /**
- * React Query를 사용하여 개봉 예정 영화 목록을 불러오는 커스텀 훅입니다.
+ * React Query를 사용하여 개봉 예정 영화 목록을 불러오는 커스텀 훅
  * @returns 개봉 예정 영화 목록 쿼리 결과
  */
 export const useUpcomingMoviesQuery = (): UseQueryResult<

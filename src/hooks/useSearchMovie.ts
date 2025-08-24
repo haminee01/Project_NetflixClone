@@ -2,8 +2,6 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
 
-// 💡 개별 영화 객체에 대한 인터페이스
-// 검색 결과 페이지 UI에 필요한 필드들을 정의합니다.
 interface IMovie {
   id: number;
   title: string;
@@ -16,7 +14,6 @@ interface IMovie {
   genre_ids: number[];
 }
 
-// 💡 검색 API 응답 전체에 대한 인터페이스
 interface ISearchMoviesResponse {
   page: number;
   results: IMovie[];
@@ -24,7 +21,7 @@ interface ISearchMoviesResponse {
   total_results: number;
 }
 
-// 💡 훅에 전달되는 매개변수 객체에 대한 인터페이스
+// 훅에 전달되는 매개변수 객체에 대한 인터페이스
 interface ISearchMoviesQueryProps {
   keyword: string | null;
   page: number;
@@ -33,7 +30,7 @@ interface ISearchMoviesQueryProps {
 }
 
 /**
- * 영화를 검색하거나 탐색하는 비동기 함수입니다.
+ * 영화를 검색하거나 탐색하는 비동기 함수
  * @param keyword 검색어
  * @param page 페이지 번호
  * @param sort 정렬 기준
@@ -62,7 +59,7 @@ const fetchSearchMovie = ({
 };
 
 /**
- * React Query를 사용하여 영화를 검색하는 커스텀 훅입니다.
+ * React Query를 사용하여 영화를 검색하는 커스텀 훅
  * @param props 검색 매개변수 객체
  * @returns 검색 결과 쿼리
  */
