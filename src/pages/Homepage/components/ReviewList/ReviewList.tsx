@@ -1,11 +1,15 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import "./ReviewList.style.css";
+import { IReview } from "../../../../types/IReview";
 
-const ReviewList = ({ reviews }) => {
-  const [expandedReviews, setExpandedReviews] = useState([]);
+interface ReviewListProps {
+  reviews: IReview[];
+}
 
-  const toggleExpanded = (index) => {
+const ReviewList = ({ reviews }: ReviewListProps) => {
+  const [expandedReviews, setExpandedReviews] = useState<boolean[]>([]);
+
+  const toggleExpanded = (index: number) => {
     const updatedExpanded = [...expandedReviews];
     updatedExpanded[index] = !updatedExpanded[index];
     setExpandedReviews(updatedExpanded);
@@ -15,7 +19,7 @@ const ReviewList = ({ reviews }) => {
 
   return (
     <div className="reviews">
-      {reviews && reviews.length > 0 ? (
+      {reviews && Array.isArray(reviews) && reviews.length > 0 ? (
         reviews.map((review, index) => (
           <div className="reviews-line" key={index}>
             <p>{review.author}</p>

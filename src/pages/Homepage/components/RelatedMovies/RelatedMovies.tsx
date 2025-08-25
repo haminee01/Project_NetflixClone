@@ -1,15 +1,22 @@
 import React from "react";
 import MovieCard from "../../../../common/MovieCard/MovieCard";
 import "./RelatedMovies.style.css";
+import { IMovie } from "../../../../types/IMovie";
 
-const RelatedMovies = ({ movies }) => {
+interface RelatedMoviesProps {
+  movies: {
+    results: IMovie[];
+  };
+}
+
+const RelatedMovies = ({ movies }: RelatedMoviesProps) => {
   console.log("movies", movies);
 
   return (
     <div className="card-area">
-      {movies?.results.map((movies, index) => (
+      {movies.results.map((movie, index) => (
         <div key={index}>
-          <MovieCard movie={movies} />
+          <MovieCard movie={movie} />
         </div>
       ))}
     </div>

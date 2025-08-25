@@ -1,15 +1,8 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
+import { IMovie } from "../types/IMovie";
 
-interface IMovie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  backdrop_path: string | null;
-  release_date: string;
-  vote_average: number;
-}
 interface IRelatedMoviesResponse {
   page: number;
   results: IMovie[];

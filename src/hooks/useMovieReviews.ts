@@ -1,11 +1,7 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
-
-interface IReview {
-  author: string;
-  content: string;
-}
+import { IReview } from "../types/IReview";
 
 interface IReviewsResponse {
   results: IReview[];

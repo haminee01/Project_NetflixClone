@@ -1,12 +1,7 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
-
-interface IMovie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-}
+import { IMovie } from "../types/IMovie";
 
 interface IPopularMoviesResponse {
   page: number;
@@ -34,12 +29,14 @@ export const usePopularMoviesQuery = (): UseQueryResult<
   Error
 > => {
   return useQuery<
-    AxiosResponse<IPopularMoviesResponse>,
+    IPopularMoviesResponse, // TQueryFnData: fetchPopularMovies의 반환 데이터 타입
     Error,
-    IPopularMoviesResponse
+    IPopularMoviesResponse // TData: select를 통해 변환된 최종 데이터 타입
   >({
     queryKey: ["movie-popular"],
-    queryFn: fetchPopularMovies,
-    select: (result) => result.data,
+    queryFn: async () => {
+      const response = await fetchPopularMovies();
+      return response.data;
+    },
   });
 };

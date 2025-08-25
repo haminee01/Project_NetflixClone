@@ -1,17 +1,11 @@
 import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
+import { IMovie } from "../types/IMovie";
 
 interface IUpcomingDates {
   maximum: string;
   minimum: string;
-}
-
-interface IMovie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  backdrop_path: string | null;
 }
 
 interface IUpcomingMoviesResponse {

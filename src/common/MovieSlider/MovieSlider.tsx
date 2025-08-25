@@ -3,17 +3,7 @@ import "./MovieSlider.style.css";
 import Carousel, { ResponsiveType } from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import MovieCard from "../MovieCard/MovieCard";
-
-interface IMovie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  backdrop_path?: string | null;
-  genre_ids: number[];
-  vote_average: number;
-  popularity: number;
-  adult: boolean;
-}
+import { IMovie } from "../../types/IMovie";
 
 interface MovieSliderProps {
   title: string;
