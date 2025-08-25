@@ -4,24 +4,47 @@ import "./MovieCard.style.css";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 import { useNavigate } from "react-router-dom";
 
-const MovieCard = ({ movie }) => {
+interface IMovie {
+  id: number;
+  title: string;
+  poster_path: string | null;
+  genre_ids: number[];
+  vote_average: number;
+  popularity: number;
+  adult: boolean;
+}
+
+interface IGenre {
+  id: number;
+  name: string;
+}
+
+interface MovieCardProps {
+  movie: IMovie;
+}
+
+const MovieCard = ({ movie }: MovieCardProps) => {
+  const navigate = useNavigate();
+  const { data: genreData } = useMovieGenreQuery();
+
+  if (!movie || !movie.id) {
+    return null;
+  }
+
   const isMobile = window.innerWidth <= 768;
   const backgroundImageUrl = isMobile
     ? "https://media.themoviedb.org/t/p/w533_and_h300_bestv2"
     : "https://media.themoviedb.org/t/p/w300_and_h450_bestv2";
 
-  const navigate = useNavigate();
   const goToMovieDetail = () => {
     navigate(`/movies/${movie.id}`);
   };
 
-  const { data: genreData } = useMovieGenreQuery();
-
-  const showGenre = (genreIdList) => {
-    if (!genreData) return [];
+  const showGenre = (genreIdList: number[]): string[] => {
+    if (!genreData || !genreIdList) return [];
     const genreNameList = genreIdList.map((id) => {
-      const genreObj = genreData.find((genre) => genre.id === id);
-      return genreObj.name;
+      const genreObj = genreData.find((genre: IGenre) => genre.id === id);
+      return genreObj ? genreObj.name : "";
     });
     return genreNameList;
   };
@@ -30,8 +53,7 @@ const MovieCard = ({ movie }) => {
     <div
       onClick={goToMovieDetail}
       style={{
-        backgroundImage:
-          "url(" + `${backgroundImageUrl}${movie.poster_path}` + ")",
+        backgroundImage: `url(${backgroundImageUrl}${movie.poster_path || ""})`,
       }}
       className="movie-card"
     >
@@ -44,11 +66,12 @@ const MovieCard = ({ movie }) => {
           >
             {movie.title}
           </h1>
-          {showGenre(movie.genre_ids).map((id) => (
-            <Badge bg="danger" className="mr-10">
-              {id}
-            </Badge>
-          ))}
+          {Array.isArray(movie.genre_ids) &&
+            showGenre(movie.genre_ids).map((name, index) => (
+              <Badge key={index} bg="danger" className="mr-10">
+                {name}
+              </Badge>
+            ))}
         </div>
         <div className="card-bottom-1">
           <span className="mr-10">
@@ -56,6 +79,7 @@ const MovieCard = ({ movie }) => {
               className="mr-5"
               src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/171_Imdb_logo_logos-512.png"
               style={{ width: "20px", height: "20px" }}
+              alt="IMDb logo"
             />
             {movie.vote_average}
           </span>
@@ -64,6 +88,7 @@ const MovieCard = ({ movie }) => {
               className="mr-5"
               src="https://cdn-icons-png.flaticon.com/512/33/33308.png"
               style={{ width: "20px", height: "20px" }}
+              alt="Popularity icon"
             />
             {movie.popularity}
           </span>
