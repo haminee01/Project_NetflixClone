@@ -2,7 +2,7 @@ import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import api from "../utils/api";
 import { AxiosResponse } from "axios";
 
-interface IMovieDetails {
+export interface IMovieDetails {
   id: number;
   title: string;
   original_title: string;
@@ -24,6 +24,7 @@ interface IMovieDetails {
   belongs_to_collection: object | null;
   budget: number;
   revenue: number;
+  popularity: number;
 }
 
 /**

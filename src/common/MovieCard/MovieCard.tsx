@@ -3,16 +3,7 @@ import { Badge } from "react-bootstrap";
 import "./MovieCard.style.css";
 import { useMovieGenreQuery } from "../../hooks/useMovieGenre";
 import { useNavigate } from "react-router-dom";
-
-interface IMovie {
-  id: number;
-  title: string;
-  poster_path: string | null;
-  genre_ids: number[];
-  vote_average: number;
-  popularity: number;
-  adult: boolean;
-}
+import { IMovie } from "../../types/IMovie";
 
 interface IGenre {
   id: number;

@@ -1,19 +1,21 @@
 import React from "react";
-import { Badge, Col, Container, Row } from "react-bootstrap";
-import "./MovieDetailPage.style.css";
+import { Col, Container, Row, Alert } from "react-bootstrap";
 import { useParams } from "react-router-dom";
-import { useMovieDetailQuery } from "../../hooks/useMovieDetails";
 import ClipLoader from "react-spinners/ClipLoader";
-import Alert from "react-bootstrap/Alert";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import MovieReviews from "../Homepage/components/Review/MovieReviews";
+import { useMovieDetailQuery } from "../../hooks/useMovieDetails";
+import { IMovieDetails } from "../../hooks/useMovieDetails";
+import "./MovieDetailPage.style.css";
 
 const MovieDetailPage = () => {
   const posterBaseUrl = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2";
-  const { id } = useParams();
+  const { id } = useParams<{ id: string }>();
 
-  const { data, isLoading, isError, error } = useMovieDetailQuery({ id });
+  const { data, isLoading, isError, error } = useMovieDetailQuery({
+    id: id as string,
+  });
   if (isLoading) {
     return (
       <div className="spinner">
@@ -22,7 +24,11 @@ const MovieDetailPage = () => {
     );
   }
   if (isError) {
-    return <Alert variant="danger">{error.message}</Alert>;
+    return <Alert variant="danger">{error?.message}</Alert>;
+  }
+
+  if (!data) {
+    return null;
   }
 
   return (
@@ -44,22 +50,25 @@ const MovieDetailPage = () => {
       <div className="movie-detail">
         <Container>
           <Row>
-            <Col xl={6} lg={4}>
+            <Col sm={12} lg={4}>
               {data ? (
                 <img
                   className="detail-poster"
                   src={`${posterBaseUrl}${data.poster_path}`}
+                  alt={data.title}
                 />
               ) : (
-                <div>No image available</div>
+                <div className="text-white text-center">No image available</div>
               )}
             </Col>
-            <Col xl={6} lg={8}>
-              {data?.genres.map((genre) => (
-                <span key={genre.id} className="genre-box">
-                  {genre.name}
-                </span>
-              ))}
+            <Col sm={12} lg={8}>
+              <div className="genre-container">
+                {data?.genres.map((genre) => (
+                  <span key={genre.id} className="genre-box">
+                    {genre.name}
+                  </span>
+                ))}
+              </div>
               <div className="detail-title">{data?.title}</div>
               <div className="detail-tagline">{data?.tagline}</div>
               <div className="detail-infos">
@@ -71,50 +80,48 @@ const MovieDetailPage = () => {
                       height: "25px",
                       marginRight: "5px",
                     }}
+                    alt="IMDB Logo"
                   />
-                  {data ? data.vote_average : <div>No average available</div>}
+                  {data?.vote_average ? data.vote_average.toFixed(1) : "N/A"}
                 </span>
                 <span style={{ marginRight: "20px" }}>
                   <FontAwesomeIcon
                     icon={faUsers}
                     style={{ marginRight: "5px" }}
                   />
-                  {data ? data.popularity : <div>No popularity available</div>}
+                  {data?.popularity ? data.popularity.toFixed(0) : "N/A"}
                 </span>
                 <span className="eighteen">
                   {data.adult ? "19" : "under 18"}
                 </span>
               </div>
-
               <div className="detail-overview">{data?.overview}</div>
-
               <div className="detail-other">
                 <ul>
                   <li>
                     <span className="detail-box">Budget</span>
                     {"$"}
-                    {data ? data.budget : <span>No budget available</span>}
+                    {data?.budget ? data.budget.toLocaleString() : "N/A"}
                   </li>
                   <li>
                     <span className="detail-box">Revenue</span>
                     {"$"}
-                    {data ? data.revenue : <span>No revenue available</span>}
+                    {data?.revenue ? data.revenue.toLocaleString() : "N/A"}
                   </li>
                   <li>
                     <span className="detail-box">Release Day</span>
-                    {data ? data.release_date : <span>No date available</span>}
+                    {data?.release_date || "N/A"}
                   </li>
                   <li>
                     <span className="detail-box">Time</span>
-                    {data ? data.runtime : <span>No runtime available</span>}
+                    {data?.runtime ? `${data.runtime} min` : "N/A"}
                   </li>
                 </ul>
               </div>
-
               <button className="more-button">Watch Trailer</button>
             </Col>
           </Row>
-          <MovieReviews id={id} />
+          {id && <MovieReviews id={id} />}
         </Container>
       </div>
     </>

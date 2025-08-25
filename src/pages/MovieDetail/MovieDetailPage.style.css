@@ -1,39 +1,58 @@
+/*
+** 모바일 우선 스타일 (기본)
+*/
 .moviedetail-background {
   background-image: url("https://images.unsplash.com/photo-1458053688450-eef5d21d43b3?q=80&w=2073&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   display: flex;
   align-items: center;
-  height: 450px;
+  height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
   text-align: center;
+  position: relative;
+}
+.moviedetail-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 .moviedetail-area {
+  position: relative;
+  z-index: 10;
   display: flex;
   justify-content: center;
-  padding-right: 40px;
+  padding-right: 0;
+  width: 100%;
 }
 .moviedetail-area h1 {
-  font-size: 60px;
-  margin-bottom: 30px;
-  padding-left: 30px;
+  font-size: 40px;
+  margin-bottom: 20px;
+  padding-left: 0;
+  color: #fff;
 }
-
+.breadcrumb-menu {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .breadcrumb-menu li {
   display: inline-block;
-  padding: 24px 42px;
+  padding: 14px 28px;
   background: #fff;
   line-height: 1;
   position: relative;
 }
 .breadcrumb-menu li a::after {
   content: "";
-  width: 2px;
-  height: 17px;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  background-color: #c4c5d5;
+  width: 0;
+  height: 0;
 }
 .breadcrumb-menu li a {
   text-decoration: none;
@@ -52,13 +71,19 @@
   transition: all 0.3s ease 0s;
   letter-spacing: 2px;
 }
-
 .movie-detail {
-  margin-top: 100px;
+  margin-top: 10px;
+  color: #fff;
 }
 .detail-poster {
-  margin-left: 70px;
-  width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+  max-width: 330px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.5);
 }
 .genre-box {
   background-color: #dc143c;
@@ -66,18 +91,21 @@
   margin-right: 10px;
   border-radius: 15px;
   font-size: 15px;
+  display: inline-block;
 }
 .detail-title {
   margin-top: 20px;
-  font-size: 65px;
+  font-size: clamp(20px, 8vw, 40px);
   text-transform: uppercase;
   line-height: 1.1;
   margin-bottom: 20px;
+  text-align: center;
 }
 .detail-tagline {
   font-family: "Montserrat", helvetica, arial, sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   margin-bottom: 30px;
+  text-align: center;
 }
 .detail-infos {
   color: #fff;
@@ -85,6 +113,15 @@
   font-size: 25px;
   font-family: sans-serif;
   margin-right: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.eighteen {
+  border: 1px solid #fff;
+  border-radius: 9999px;
+  padding: 2px 8px;
+  font-size: 14px;
 }
 .detail-overview {
   margin-top: 20px;
@@ -94,12 +131,28 @@
   padding-top: 30px;
   font-family: "Montserrat", helvetica, arial, sans-serif;
   font-size: 14px;
+  text-align: center;
 }
 .detail-other {
   margin-top: 40px;
   padding-bottom: 20px;
   border-bottom: 1px solid #fff;
   margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detail-other ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.detail-other li {
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 300px;
 }
 .detail-box {
   width: 120px;
@@ -107,14 +160,7 @@
   background-color: #dc143c;
   text-align: center;
   border-radius: 20px;
-  margin-bottom: 10px;
   margin-right: 10px;
-}
-ul {
-  list-style-type: none;
-  margin-left: -32px;
-  font-family: "Montserrat", helvetica, arial, sans-serif;
-  font-size: 14px;
 }
 .more-button {
   background: none;
@@ -122,33 +168,97 @@ ul {
   color: #d3d3d3;
   font-weight: 700;
   text-decoration: underline;
+  display: block;
+  margin: 0 auto;
+}
+.genre-container {
+  text-align: center;
 }
 
-@media screen and (max-width: 48rem) {
-  .moviedetail-background {
-    height: 300px;
-  }
-  .moviedetail-area h1 {
-    font-size: 40px;
-    margin-bottom: 20px;
-    margin-left: 10px;
-  }
-  .breadcrumb-menu {
-    margin-left: 15px;
-  }
-  .breadcrumb-menu li {
-    padding: 14px 28px;
-  }
-  .breadcrumb-menu li a::after {
-    height: 0px;
-  }
-
-  .movie-detail {
-    margin-top: 10px;
+/* iPad 화면 스타일 (768px ~ 1199px) */
+@media screen and (min-width: 768px) and (max-width: 1199px) {
+  .movie-detail .row {
+    flex-direction: column;
+    align-items: center;
   }
   .detail-poster {
-    margin-left: 35px;
-    width: 300px;
+    width: 100%;
+    max-width: 400px;
     margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .detail-contents {
+    margin-left: 0;
+    text-align: center;
+  }
+  .genre-container,
+  .detail-title,
+  .detail-tagline,
+  .detail-infos,
+  .detail-overview {
+    text-align: center;
+  }
+  .detail-infos {
+    justify-content: center;
+  }
+  .detail-other {
+    align-items: center;
+    width: 100%;
+  }
+  .detail-other li {
+    justify-content: flex-start;
+  }
+}
+
+/* 데스크톱 화면 스타일 (1200px 이상) */
+@media screen and (min-width: 1200px) {
+  .moviedetail-background {
+    height: 450px;
+  }
+  .moviedetail-area h1 {
+    font-size: 60px;
+    margin-bottom: 30px;
+    padding-left: 30px;
+  }
+  .breadcrumb-menu li a::after {
+    content: "";
+    width: 2px;
+    height: 17px;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    background-color: #c4c5d5;
+  }
+  .movie-detail {
+    margin-top: 100px;
+  }
+  .detail-poster {
+    width: 550px;
+    margin-left: 70px;
+  }
+  .genre-container {
+    text-align: left;
+  }
+  .detail-title {
+    font-size: 65px;
+    text-align: left;
+  }
+  .detail-tagline {
+    font-size: 25px;
+    text-align: left;
+  }
+  .detail-infos {
+    justify-content: flex-start;
+  }
+  .detail-overview {
+    text-align: left;
+  }
+  .detail-other {
+    display: block;
+  }
+  .more-button {
+    display: inline-block;
   }
 }

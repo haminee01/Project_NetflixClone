@@ -8,4 +8,5 @@ export interface IMovie {
   popularity: number;
   adult: boolean;
   overview?: string;
+  release_date: string;
 }

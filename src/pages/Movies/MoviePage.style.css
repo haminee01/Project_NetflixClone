@@ -38,6 +38,7 @@
   background-color: #9a9a9a;
 }
 
+/* --- 모바일 화면(768px 미만) CSS --- */
 @media screen and (max-width: 48rem) {
   .card-area {
     margin-left: 45px;
@@ -45,6 +46,8 @@
   }
   .pagination {
     margin-left: 10px;
+    max-width: 100%;
+    overflow-x: auto;
   }
   .dropdown-area {
     display: flex;
@@ -52,13 +55,12 @@
     align-items: center;
     flex-wrap: wrap;
   }
-
   .dropdown-area > div {
-    flex: 1 1 120px;
+    flex: 1 1 auto;
     margin: 5px;
-    max-width: 150px;
+    max-width: 165px;
+    width: 160px;
   }
-
   #dropdown-basic-button {
     width: 100%;
     height: 40px;
@@ -68,4 +70,42 @@
   .dropdown-menu {
     width: 100%;
   }
+}
+
+/* --- 태블릿 화면 (768px ~ 991px) CSS --- */
+@media screen and (min-width: 48rem) and (max-width: 62rem) {
+  .dropdown-area {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+  }
+  .dropdown-area > div {
+    margin: 0 5px;
+  }
+  #dropdown-basic-button {
+    width: 160px;
+  }
+  .dropdown-menu {
+    width: 160px;
+  }
+}
+
+/* --- 아이패드 에어와 같은 태블릿 가로 모드 (992px ~ 1199px) CSS --- */
+@media screen and (min-width: 62.01rem) and (max-width: 74.93rem) {
+  .dropdown-area {
+    display: block;
+    margin: 20px 0;
+  }
+  #dropdown-basic-button {
+    width: 250px;
+    margin-bottom: 10px;
+  }
+  .dropdown-menu {
+    width: 250px;
+  }
+}
+
+.card-area {
+  padding-top: 20px;
+  margin-bottom: 20px;
 }

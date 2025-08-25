@@ -10,34 +10,38 @@ import ReactPaginate from "react-paginate";
 import "./MoviePage.style.css";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { IMovie } from "../../types/IMovie";
+import "./MoviePage.style.css";
 
 const MoviePage = () => {
   const [query, setQuery] = useSearchParams();
-  const [page, setPage] = useState(1);
-  const [sort, setSort] = useState("popularity.desc");
-  const [genre, setGenre] = useState(null);
+  const [page, setPage] = useState<number>(1);
+  const [sort, setSort] = useState<string>("popularity.desc");
+  const [genre, setGenre] = useState<number | null>(null);
+
   const keyword = query.get("q");
-  const pageRange = window.innerWidth < 768 ? 2 : 7;
+
+  const pageRange: number = window.innerWidth < 768 ? 2 : 7;
 
   const { data, isLoading, isError, error } = useSearchMovieQuery({
-    keyword,
+    keyword: keyword || "",
     page,
     sort,
-    genre,
+    genre: genre !== null ? String(genre) : null,
   });
 
   const { data: genres } = useMovieGenreQuery();
 
-  const handlePageClick = ({ selected }) => {
+  const handlePageClick = ({ selected }: { selected: number }) => {
     setPage(selected + 1);
   };
 
-  const handleSortChange = (sortOption) => {
+  const handleSortChange = (sortOption: string) => {
     setSort(sortOption);
     setPage(1);
   };
 
-  const handleGenreChange = (genreId) => {
+  const handleGenreChange = (genreId: number) => {
     setGenre(genreId);
     setPage(1);
   };
@@ -49,6 +53,7 @@ const MoviePage = () => {
       </div>
     );
   }
+
   if (isError) {
     return <Alert variant="danger">{error.message}</Alert>;
   }
@@ -57,7 +62,6 @@ const MoviePage = () => {
     <Container>
       <Row>
         <Col lg={4} xs={12} className="dropdown-area">
-          {/* Sort 드롭다운 */}
           <div>
             <DropdownButton id="dropdown-basic-button" title="Sort">
               <Dropdown.Item
@@ -77,7 +81,6 @@ const MoviePage = () => {
               </Dropdown.Item>
             </DropdownButton>
           </div>
-          {/* Genre 드롭다운 */}
           <div>
             <DropdownButton id="dropdown-basic-button" title="Genre">
               {genres?.map((g) => (
@@ -104,7 +107,7 @@ const MoviePage = () => {
             onPageChange={handlePageClick}
             pageRangeDisplayed={pageRange}
             marginPagesDisplayed={1}
-            pageCount={data?.total_pages}
+            pageCount={data?.total_pages || 0}
             previousLabel="<"
             pageClassName="page-item"
             pageLinkClassName="page-link"
