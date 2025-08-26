@@ -32,19 +32,26 @@ const fetchSearchMovie = ({
   sort,
   genre,
 }: ISearchMoviesQueryProps): Promise<AxiosResponse<ISearchMoviesResponse>> => {
-  let url = keyword
-    ? `/search/movie?query=${keyword}&page=${page}`
-    : `/discover/movie?page=${page}`;
+  let url: string;
+  const params: Record<string, any> = { page };
+
+  if (keyword) {
+    url = `/search/movie`;
+    params.query = keyword;
+  } else {
+    url = `/discover/movie`;
+  }
 
   if (sort) {
-    url += `&sort_by=${sort}`;
+    params.sort_by = sort;
   }
 
   if (genre) {
-    url += `&with_genres=${genre}`;
+    params.with_genres = genre;
   }
 
-  return api.get<ISearchMoviesResponse>(url);
+  // Axios가 자동으로 URL 인코딩을 처리하도록 params 객체를 사용합니다.
+  return api.get<ISearchMoviesResponse>(url, { params });
 };
 
 /**

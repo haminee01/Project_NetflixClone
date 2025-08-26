@@ -1,22 +1,16 @@
-import axios, {
-  AxiosRequestConfig,
-  AxiosResponse,
-  InternalAxiosRequestConfig,
-} from "axios";
+import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
-// NOTE: 환경 변수에서 불러오는 방식으로 변환
-const API_TOKEN: string = "";
+const TMDB_API_KEY: string = "";
 
 const api = axios.create({
   baseURL: "https://api.themoviedb.org/3",
-  headers: {
-    Accept: "application/json",
-    Authorization: `Bearer ${API_TOKEN}`,
+  params: {
+    api_key: TMDB_API_KEY,
+    language: "en-US",
   },
 });
 
 // 요청 인터셉터
-// AxiosRequestConfig 대신 InternalAxiosRequestConfig
 api.interceptors.request.use(
   function (config: InternalAxiosRequestConfig): InternalAxiosRequestConfig {
     console.log("Starting Request", config);
