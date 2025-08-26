@@ -10,7 +10,7 @@ const AppLayout = () => {
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
 
-  const searchByKeyword = (event) => {
+  const searchByKeyword = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     //url 바꿔주기
     navigate(`/movies?q=${keyword}`);
