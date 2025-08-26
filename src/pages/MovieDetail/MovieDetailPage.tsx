@@ -1,5 +1,5 @@
-import React from "react";
-import { Col, Container, Row, Alert } from "react-bootstrap";
+import React, { useState } from "react";
+import { Col, Container, Row, Alert, Modal, Button } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import ClipLoader from "react-spinners/ClipLoader";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,29 +7,64 @@ import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import MovieReviews from "../Homepage/components/Review/MovieReviews";
 import { useMovieDetailQuery } from "../../hooks/useMovieDetails";
 import { IMovieDetails } from "../../hooks/useMovieDetails";
+import { useMovieVideos } from "../../hooks/useMovieVideos";
 import "./MovieDetailPage.style.css";
 
 const MovieDetailPage = () => {
   const posterBaseUrl = "https://media.themoviedb.org/t/p/w300_and_h450_bestv2";
   const { id } = useParams<{ id: string }>();
 
+  const [showModal, setShowModal] = useState(false);
+
   const { data, isLoading, isError, error } = useMovieDetailQuery({
     id: id as string,
   });
-  if (isLoading) {
+
+  const {
+    data: videoData,
+    isLoading: isVideoLoading,
+    isError: isVideoError,
+    error: videoError,
+  } = useMovieVideos({
+    id: id as string,
+  });
+
+  if (isLoading || isVideoLoading) {
     return (
       <div className="spinner">
-        <ClipLoader color="#ffff" loading={isLoading} size={150} />
+        <ClipLoader
+          color="#ffff"
+          loading={isLoading || isVideoLoading}
+          size={150}
+        />
       </div>
     );
   }
+
   if (isError) {
     return <Alert variant="danger">{error?.message}</Alert>;
+  }
+  if (isVideoError) {
+    return <Alert variant="danger">{videoError?.message}</Alert>;
   }
 
   if (!data) {
     return null;
   }
+
+  const trailer = videoData?.results.find(
+    (video) => video.site === "YouTube" && video.type === "Trailer"
+  );
+
+  const handleShowTrailer = () => {
+    if (trailer) {
+      setShowModal(true);
+    } else {
+      alert("트레일러 영상이 없습니다.");
+    }
+  };
+
+  const handleCloseModal = () => setShowModal(false);
 
   return (
     <>
@@ -118,12 +153,38 @@ const MovieDetailPage = () => {
                   </li>
                 </ul>
               </div>
-              <button className="more-button">Watch Trailer</button>
+              <button
+                className="more-button"
+                onClick={handleShowTrailer}
+                disabled={!trailer}
+              >
+                Watch Trailer
+              </button>
             </Col>
           </Row>
           {id && <MovieReviews id={id} />}
         </Container>
       </div>
+
+      <Modal show={showModal} onHide={handleCloseModal} size="xl" centered>
+        <Modal.Header closeButton>
+          <Modal.Title>{data?.title} Trailer</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {trailer ? (
+            <div className="iframe-container">
+              <iframe
+                src={`https://www.youtube.com/embed/${trailer.key}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          ) : (
+            <div>Trailer not available.</div>
+          )}
+        </Modal.Body>
+      </Modal>
     </>
   );
 };
