@@ -38,6 +38,12 @@
   background-color: #9a9a9a;
 }
 
+.dropdown-area .show > #dropdown-basic-button {
+  background-color: white;
+  color: black;
+  border-color: white;
+}
+
 /* --- 모바일 화면(768px 미만) CSS --- */
 @media screen and (max-width: 48rem) {
   .card-area {
