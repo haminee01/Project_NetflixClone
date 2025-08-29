@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import Homepage from "./pages/Homepage/Homepage";
@@ -7,19 +8,43 @@ import NotFoundPage from "./pages/NotFoundpage/NotFoundPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-function App() {
-  return (
-    <Routes>
-      <Route path="/" element={<AppLayout />}>
-        <Route index element={<Homepage />} />
-        <Route path="movies">
-          <Route index element={<MoviePage />} />
-          <Route path=":id" element={<MovieDetailPage />} />
-        </Route>
-      </Route>
+const NETFLIX_LOGO_URL =
+  "https://www.freepnglogos.com/uploads/netflix-logo-0.png";
 
-      <Route path="*" element={<NotFoundPage />} />
-    </Routes>
+function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <div>
+      {isLoading ? (
+        <div className="loader-container">
+          <img
+            src={NETFLIX_LOGO_URL}
+            alt="Netflix Logo"
+            className="netflix-logo"
+          />
+        </div>
+      ) : (
+        <Routes>
+          <Route path="/" element={<AppLayout />}>
+            <Route index element={<Homepage />} />
+            <Route path="movies">
+              <Route index element={<MoviePage />} />
+              <Route path=":id" element={<MovieDetailPage />} />
+            </Route>
+          </Route>
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      )}
+    </div>
   );
 }
 
