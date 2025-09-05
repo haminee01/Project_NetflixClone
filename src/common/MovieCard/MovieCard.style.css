@@ -122,6 +122,7 @@
   }
 
   .movie-card .card-bottom-2 {
+    margin-top: 10px;
     bottom: 5px;
   }
 }
