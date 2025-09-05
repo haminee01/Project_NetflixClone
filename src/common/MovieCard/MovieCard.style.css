@@ -6,6 +6,7 @@
   transition: 0.5s;
   margin-bottom: 10px;
 }
+
 .movie-card:hover {
   transform: scale(1.2) translateZ(20px);
   z-index: 2;
@@ -23,6 +24,7 @@
   overflow-wrap: break-word;
   border-radius: 10px;
 }
+
 .overlay:hover {
   opacity: 1;
 }
@@ -30,16 +32,17 @@
 .p-10 {
   padding: 10px;
 }
+
 .mr-5 {
   margin-right: 5px;
 }
+
 .mr-10 {
   margin-right: 10px;
 }
 
 .eighteen {
   color: #dc143c;
-  font-family: fantasy !important;
 }
 
 .movie-card .card-bottom-1 {
@@ -50,6 +53,7 @@
   display: flex;
   padding: 0 10px;
 }
+
 .movie-card .card-bottom-2 {
   position: absolute;
   bottom: 10px;
@@ -62,6 +66,7 @@
 .movie-title {
   position: relative;
 }
+
 .movie-title::after {
   content: "";
   position: absolute;
@@ -72,9 +77,11 @@
   background-color: white;
   transition: width 0.3s;
 }
+
 .movie-title:hover::after {
   width: 30%;
 }
+
 .smaller-text {
   font-size: 32px;
 }
@@ -83,29 +90,37 @@
   .p-10 {
     padding: 10px;
   }
+
   .mr-5 {
     margin-right: 3px;
   }
+
   .mr-10 {
     margin-right: 5px;
     font-size: 15px;
   }
+
   .movie-card {
     width: 280px;
     height: 170px;
   }
+
   .movie-card:hover {
     transform: scale(1.15) translateZ(20px);
   }
+
   .smaller-text {
     font-size: 22px;
   }
+
   .eighteen {
     font-size: 13px;
   }
+
   .movie-card .card-bottom-1 {
     bottom: 28px;
   }
+
   .movie-card .card-bottom-2 {
     bottom: 5px;
   }
