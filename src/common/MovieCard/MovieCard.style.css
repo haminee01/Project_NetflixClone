@@ -122,11 +122,6 @@
   }
 
   .movie-card .card-bottom-2 {
-    bottom: 5px;
-  }
-
-  .card-bottom-2 .eighteen {
-    font-size: 13px;
-    margin-top: 30px;
+    bottom: 20px;
   }
 }
