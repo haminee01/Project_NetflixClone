@@ -115,7 +115,6 @@
 
   .eighteen {
     font-size: 13px;
-    margin-top: 10px;
   }
 
   .movie-card .card-bottom-1 {
@@ -124,5 +123,10 @@
 
   .movie-card .card-bottom-2 {
     bottom: 5px;
+  }
+
+  .card-bottom-2 .eighteen {
+    font-size: 13px;
+    margin-top: 10px;
   }
 }
