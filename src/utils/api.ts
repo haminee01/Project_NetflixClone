@@ -40,7 +40,7 @@
 // .env 환경변수
 import axios, { AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
-const TMDB_API_KEY: string | undefined = process.env.REACT_APP_TMDB_API_KEY;
+const TMDB_API_KEY: string | undefined = import.meta.env.VITE_TMDB_API_KEY;
 
 if (!TMDB_API_KEY) {
   console.error("TMDB API Key is missing. Please check your .env file.");
