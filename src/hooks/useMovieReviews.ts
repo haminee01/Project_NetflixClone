@@ -8,11 +8,6 @@ interface IReviewsResponse {
   total_results: number;
 }
 
-/**
- * 특정 영화의 리뷰 목록을 가져오는 비동기 함수
- * @param id 영화 ID
- * @returns 리뷰 데이터를 포함하는 Promise<AxiosResponse>
- */
 const fetchMovieReviews = ({
   id,
 }: {
@@ -21,11 +16,6 @@ const fetchMovieReviews = ({
   return api.get<IReviewsResponse>(`/movie/${id}/reviews`);
 };
 
-/**
- * React Query를 사용하여 영화 리뷰 목록을 불러오는 커스텀 훅
- * @param id 영화 ID
- * @returns 리뷰 목록 쿼리 결과
- */
 export const useMovieReviewQuery = ({
   id,
 }: {

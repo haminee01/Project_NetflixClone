@@ -12,7 +12,6 @@ const AppLayout = () => {
 
   const searchByKeyword = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    //url 바꿔주기
     navigate(`/movies?q=${keyword}`);
     setKeyword("");
   };

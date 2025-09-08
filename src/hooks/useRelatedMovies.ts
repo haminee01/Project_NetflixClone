@@ -10,11 +10,6 @@ interface IRelatedMoviesResponse {
   total_results: number;
 }
 
-/**
- * 관련 영화 목록을 가져오는 비동기 함수
- * @param id 영화 ID
- * @returns 관련 영화 데이터를 포함하는 Promise<AxiosResponse>
- */
 const fetchRelatedMovies = ({
   id,
 }: {
@@ -23,11 +18,6 @@ const fetchRelatedMovies = ({
   return api.get<IRelatedMoviesResponse>(`/movie/${id}/similar`);
 };
 
-/**
- * React Query를 사용하여 관련 영화 목록을 불러오는 커스텀 훅
- * @param id 영화 ID
- * @returns 관련 영화 목록 쿼리 결과
- */
 export const useRelatedMovieQuery = ({
   id,
 }: {

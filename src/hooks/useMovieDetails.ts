@@ -27,11 +27,6 @@ export interface IMovieDetails {
   popularity: number;
 }
 
-/**
- * 영화 상세 정보를 가져오는 비동기 함수
- * @param id 영화 ID
- * @returns 영화 상세 정보 데이터를 포함하는 Promise<AxiosResponse>
- */
 const fetchMovieDetails = ({
   id,
 }: {
@@ -40,11 +35,6 @@ const fetchMovieDetails = ({
   return api.get<IMovieDetails>(`/movie/${id}`);
 };
 
-/**
- * React Query를 사용하여 영화 상세 정보를 불러오는 커스텀 훅
- * @param id 영화 ID
- * @returns 영화 상세 정보 쿼리 결과
- */
 export const useMovieDetailQuery = ({
   id,
 }: {

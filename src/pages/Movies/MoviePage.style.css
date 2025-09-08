@@ -44,7 +44,7 @@
   border-color: white;
 }
 
-/* --- 모바일 화면(768px 미만) CSS --- */
+/* 모바일 화면(768px 미만) */
 @media screen and (max-width: 48rem) {
   .card-area {
     margin-left: 45px;
@@ -78,7 +78,7 @@
   }
 }
 
-/* --- 태블릿 화면 (768px ~ 991px) CSS --- */
+/* 태블릿 화면 (768px ~ 991px) */
 @media screen and (min-width: 48rem) and (max-width: 62rem) {
   .dropdown-area {
     display: flex;
@@ -96,7 +96,7 @@
   }
 }
 
-/* --- 아이패드 에어와 같은 태블릿 가로 모드 (992px ~ 1199px) CSS --- */
+/* 태블릿 가로 모드 (992px ~ 1199px) */
 @media screen and (min-width: 62.01rem) and (max-width: 74.93rem) {
   .dropdown-area {
     display: block;
